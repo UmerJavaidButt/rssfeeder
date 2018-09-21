@@ -1,0 +1,17 @@
+.card-deck .card {
+    min-width: 220px;
+}
+
+.card-title {
+    margin-bottom: .75rem;
+}
+
+.text-muted {
+	font-size: 15px;
+    color: #6c757d!important;
+}
+
+.pricing-card_header{
+	background: #1abc9c;
+	color: white;
+}

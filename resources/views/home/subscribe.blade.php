@@ -13,8 +13,6 @@
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/registration.css') }}">
 
     <!-- Fontawsome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -23,6 +21,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/subscribe.css') }}" rel="stylesheet">
+
 </head>
 <body>
     <div id="app">
@@ -40,14 +40,6 @@
                     <ul class="navbar-nav mr-auto">
 
                     </ul>
-
-                    <!-- <div class="search-container">
-                        <form action="/feed" method="post">
-                        {{csrf_field()}}
-                          <input type="text" placeholder="www.example.com" name="url">
-                          <button type="submit" id="submit_url"><i class="fa fa-search"></i></button>
-                        </form>
-                    </div> -->
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -84,13 +76,49 @@
         </nav>
 
         <main class="py-4">
-            @yield('content')
-        </main>
+          <div class="">
+            <div class="row justify-content-center">
+              <div class="col-md-6">
+                <div class="card">
+                  <div class="card-header">
+                    <h5>Subscribe</h5>
+                  </div>
+                  <div class="card-body">
+                    <form method="POST" action="{{ action('RssController@subscribe') }}" aria-label="{{ __('Subscribe') }}">
+                    @csrf
+                    <div class="form-group row">
+                      <label for="url" class="col-md-4 col-form-label text-md-right">{{ __('Enter URL to Subscribe') }}</label>
+
+                      <div class="col-md-6">
+                        <input id="url" placeholder="https://helloworld.com" type="url" class="form-control{{ $errors->has('url') ? ' is-invalid' : '' }}" name="url" value="{{ old('url') }}" required autofocus>
+
+                        @if ($errors->has('name'))
+                          <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('url') }}</strong>
+                          </span>
+                        @endif
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                    <div class="col-md-4"></div>
+                        <div class="col-md-6">
+                            <button type="submit" class="btn btn_subscribe">
+                                {{ __('Subscribe') }}
+                            </button>
+                        </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
     </div>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
     <script type="text/javascript" src= "{{ asset('jquery/jquery.min.js') }}"></script>
     <script type="text/javascript" src= "{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}" defer></script>
 </body>
 </html>

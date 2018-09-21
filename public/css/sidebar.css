@@ -1,0 +1,38 @@
+.sidenav {
+    width: 230px;
+    position: fixed;
+    z-index: 1;
+    background: #1abc9c;
+    overflow-x: hidden;
+    margin-top: 40px;
+    border-radius: 10px;
+    padding-left: 15px;
+    margin-left: 45px;
+}
+
+.search-container{
+	padding-right: 15px;
+}
+
+.sidenav a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #fff;
+    display: block;
+}
+
+.sidenav a:hover {
+    color: #fff;
+}
+
+.main {
+    margin-left: 340px; /* Same width as the sidebar + left position in px */
+    font-size: 28px; /* Increased text to enable scrolling */
+    padding: 0px 10px;
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+}

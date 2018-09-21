@@ -13,8 +13,6 @@
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/registration.css') }}">
 
     <!-- Fontawsome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -23,6 +21,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/pricing.css') }}" rel="stylesheet">
+
 </head>
 <body>
     <div id="app">
@@ -40,14 +40,6 @@
                     <ul class="navbar-nav mr-auto">
 
                     </ul>
-
-                    <!-- <div class="search-container">
-                        <form action="/feed" method="post">
-                        {{csrf_field()}}
-                          <input type="text" placeholder="www.example.com" name="url">
-                          <button type="submit" id="submit_url"><i class="fa fa-search"></i></button>
-                        </form>
-                    </div> -->
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -84,11 +76,82 @@
         </nav>
 
         <main class="py-4">
-            @yield('content')
+            <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+                <h1>Pricing</h1>
+                <p>Kindly choose a Subscription Plan for you!</p>
+            </div>
+
+            <div class="container">
+                <div class="card-deck mb-3 text-center">
+                        <div class="card mb-4 shadow-sm">
+                          <div class="card-header pricing-card_header">
+                                <h4>10 Links</h4>
+                          </div>
+
+                          <div class="card-body">
+                              <h1 class="card-title pricing-card-title">
+                                  $4.99
+                                  <small class="text-muted">for 10 more links</small>
+                              </h1>
+
+                              <ul class="list-unstyled mt-3 mb-4">
+                                  <li>10 Links</li>
+                                  <li>No time limits</li>
+                              </ul>
+
+                              <button type="button" class="btn btn-lg btn-block btn-outline-primary">
+                                  Get Offer!
+                              </button>
+                          </div>
+                        </div>
+
+                        <div class="card mb-4 shadow-sm">
+                          <div class="card-header pricing-card_header">
+                                <h4>25 Links</h4>
+                          </div>
+
+                          <div class="card-body">
+                              <h1 class="card-title pricing-card-title">
+                                  $9.99
+                                  <small class="text-muted">for 25 more links</small>
+                              </h1>
+
+                              <ul class="list-unstyled mt-3 mb-4">
+                                  <li>25 Links</li>
+                                  <li>No time limits</li>
+                              </ul>
+
+                              <button type="button" class="btn btn-lg btn-block btn-outline-primary">
+                                  Get Offer!
+                              </button>
+                          </div>
+                        </div>
+
+                        <div class="card mb-4 shadow-sm">
+                          <div class="card-header pricing-card_header">
+                                <h4>Unlimited Links</h4>
+                          </div>
+
+                          <div class="card-body">
+                              <h1 class="card-title pricing-card-title">
+                                  $19.99
+                                  <small class="text-muted">for <strong>Unlimited</strong> links</small>
+                              </h1>
+
+                              <ul class="list-unstyled mt-3 mb-4">
+                                  <li>Unlimited Links</li>
+                                  <li>No time limits</li>
+                              </ul>
+
+                              <button type="button" class="btn btn-lg btn-block btn-outline-primary">
+                                  Get Offer!
+                              </button>
+                          </div>
+                        </div>
+                </div>
+            </div>
         </main>
     </div>
-
-    <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script type="text/javascript" src= "{{ asset('jquery/jquery.min.js') }}"></script>
     <script type="text/javascript" src= "{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>

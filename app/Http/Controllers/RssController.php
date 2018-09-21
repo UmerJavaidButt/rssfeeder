@@ -18,6 +18,10 @@ class RssController extends Controller
     	return view('home.feeds');
     }
 
+    function subscribe(){
+        return view('home.subscribe');
+    }
+
     function feed(Request $request){
         $extention = '/collections/all.atom';
         //$https = 'https://';
