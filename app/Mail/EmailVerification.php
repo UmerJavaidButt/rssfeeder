@@ -6,19 +6,19 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
-
+use App\User;
 class EmailVerification extends Mailable
 {
     use Queueable, SerializesModels;
 
-    protected $user;
+    public $user;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(User $user)
     {
         $this->user = $user;
     }
@@ -30,8 +30,6 @@ class EmailVerification extends Mailable
      */
     public function build()
     {
-        return $this->view('email.verify_account')->with([
-            'email_token' => $this->user->email_token    
-        ]);
+        return $this->view('email.verification');
     }
 }
