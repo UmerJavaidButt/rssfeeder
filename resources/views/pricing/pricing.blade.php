@@ -12,7 +12,6 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
 
     <!-- Fontawsome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -78,12 +77,34 @@
         <main class="py-4">
             <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
                 <h1>Pricing</h1>
-                <p>Kindly choose a Subscription Plan for you!</p>
+                <p>Kindly choose a Subscription Plan of your choice!</p>
             </div>
 
             <div class="container">
                 <div class="card-deck mb-3 text-center">
-                        <div class="card mb-4 shadow-sm">
+                        <div class="card mb-3 shadow-sm">
+                          <div class="card-header pricing-card_header">
+                                <h4>Free first 3 Links</h4>
+                          </div>
+
+                          <div class="card-body">
+                              <h1 class="card-title pricing-card-title">
+                                  $0.00
+                                  <p><small class="text-muted">first 3 links</small></p>
+                              </h1>
+
+                              <ul class="list-unstyled mt-3 mb-4">
+                                  <li>First 4 Links</li>
+                                  <li>No time limits</li>
+                              </ul>
+
+                              <button type="button" class="btn btn-lg btn-block btn-outline-primary">
+                                  Get Offer!
+                              </button>
+                          </div>
+                        </div>
+
+                        <div class="card mb-3 shadow-sm">
                           <div class="card-header pricing-card_header">
                                 <h4>10 Links</h4>
                           </div>
@@ -91,7 +112,7 @@
                           <div class="card-body">
                               <h1 class="card-title pricing-card-title">
                                   $4.99
-                                  <small class="text-muted">for 10 more links</small>
+                                  <p><small class="text-muted">next 10 Links</small></p>
                               </h1>
 
                               <ul class="list-unstyled mt-3 mb-4">
@@ -105,7 +126,7 @@
                           </div>
                         </div>
 
-                        <div class="card mb-4 shadow-sm">
+                        <div class="card mb-3 shadow-sm">
                           <div class="card-header pricing-card_header">
                                 <h4>25 Links</h4>
                           </div>
@@ -113,7 +134,7 @@
                           <div class="card-body">
                               <h1 class="card-title pricing-card-title">
                                   $9.99
-                                  <small class="text-muted">for 25 more links</small>
+                                  <p><small class="text-muted">next 25 links</small></p>
                               </h1>
 
                               <ul class="list-unstyled mt-3 mb-4">
@@ -127,7 +148,7 @@
                           </div>
                         </div>
 
-                        <div class="card mb-4 shadow-sm">
+                        <div class="card mb-3 shadow-sm">
                           <div class="card-header pricing-card_header">
                                 <h4>Unlimited Links</h4>
                           </div>
@@ -135,7 +156,7 @@
                           <div class="card-body">
                               <h1 class="card-title pricing-card-title">
                                   $19.99
-                                  <small class="text-muted">for <strong>Unlimited</strong> links</small>
+                                  <p><small class="text-muted"><strong>Unlimited</strong> links</small></p>
                               </h1>
 
                               <ul class="list-unstyled mt-3 mb-4">
@@ -153,7 +174,5 @@
         </main>
     </div>
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <script type="text/javascript" src= "{{ asset('jquery/jquery.min.js') }}"></script>
-    <script type="text/javascript" src= "{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
 </body>
 </html>

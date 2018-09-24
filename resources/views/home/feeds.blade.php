@@ -12,7 +12,6 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
 
     <!-- Fontawsome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -23,13 +22,18 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/sidebar.css') }}" rel="stylesheet">
 
+    <!-- Style.css -->
+    <link rel="stylesheet" type="text/css" href="{{asset('css/sidebar/style.css')}}">
+
 </head>
 <body>
     <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
-        <div class="container">
+        <div class="navbar-wrapper container">
             <a class="navbar-brand" href="{{ route('subscribe') }}">
                 {{ ('Subscribe') }}
             </a>
+
+            <span class="navbar-brand">|</span>
 
             <a class="navbar-brand" href="{{route('pricing')}}">
                 Pricing
@@ -78,129 +82,110 @@
         </div>
     </nav>
 
-    <main class="py-4">
-    <!-- SideNavbar -->
-    <div class="sidenav">
-        <div class="search-container">
-            <form action="/feed" method="post">
-            {{csrf_field()}}
-                <div class="form-group">
-                        <input class="form-control" type="text" placeholder="https://example.com" name="url">
+    <!-- Sidebar starts -->
+
+  <div class="main-menu">
+    <!-- <div class="main-menu-header">
+        <img class="img-40" src="{{asset('images/user.png')}}" alt="User-Profile-Image">
+        <div class="user-details">
+            <span>Welcome {{ Auth::user()->name }}</span>
+        </div>
+    </div> -->
+
+    <div class="main-menu-content">
+        <ul class="main-navigation">
+          <li class="nav-title" data-i18n="nav.category.navigation">
+              <i class="ti-line-dashed"></i>
+              <span>All Subscribed URLs</span>
+          </li>
+            <li class="nav-item single-item">
+                <div class="row">
+                  <!-- <form action="/feed" method="post">
+                  {{csrf_field()}}
+                      <div class="form-group col-md-12">
+                          <input class="form-control" type="text" placeholder="https://example.com" name="url">
+                      </div>
+                  </form> -->
+
+                  <div class="form-group col-md-12">
+                    <div class="form-control col-md-11 main_menu">
+                    <form action="/feed" method="post" class="form">
+                    {{csrf_field()}}
+                      <input type="hidden" name="url" value="https://thehalloweenspirit.com">
+                      <a href="javascript:void(0)" class="sidenav_link">https://thehalloweenspirit.com</a>
+                    </form>
+                    <form action="/feed" method="post" class="form">
+                    {{csrf_field()}}
+                      <input type="hidden" name="url" value="https://schoolofpets.com">
+                      <a href="javascript:void(0)" class="sidenav_link">https://schoolofpets.com</a>
+                    </form>
+                      <a href="#" class="sidenav_link">https://thepetschool.com</a>
+                      <a href="#" class="sidenav_link">https://thepetschool.com</a>
+                      <a href="#" class="sidenav_link">https://thepetschool.com</a>
+                    </div>
+                  </div>
+              </div>
+            </li>
+       </ul>
+    </div>
+  </div>
+
+    <!-- Sidebar Ends-->
+
+    <!-- Main Body -->
+
+  <div class="main-body">
+    <div class="page-wrapper">
+        <div class="page-header">
+          <div class="page-header-title">
+                <h4>Feeds</h4>
+            </div>
+        </div>
+        <div class="page-body">
+            <div class="row">
+                <!-- Documents card start -->
+                <div class="col-md-12 col-xl-12">
+                @if(!empty($data))
+                  @if (empty($data['items']))
+                      <div class="alert">
+                        {{('Please Enter a valid URL')}} 
+                      </div>
+                  @else
+                      @php
+                          $i = 0;
+                      @endphp
+                      <div class="accordion md-accordion" id="accordion" role="tablist" aria-multiselectable="true">
+                      @foreach ($data['items'] as $item)
+                            <!-- <div class="item"> -->
+                                <div class="cardclient-blocks dark-primary-border">
+                                  <div class="card-header" role="tab" id="heading-{{$i}}">
+                                      <a data-parent="#accordion" data-toggle="collapse" href="{{ $item->get_permalink() }}" aria-expanded="true" aria-controls="collapse{{$i}}">
+                                        <h5 class="mb-0">{{ $item->get_title() }}</h5>
+                                      </a>
+                                  </div>
+
+                                  <div id="collapse{{$i}}" class="collapse show" role="tabpanel" aria-labelledby="heading-{{$i}}" data-parent="#accordion">
+                                    <div class="card-body">
+                                      <p>{!! $item->get_content() !!}</p>
+                                      <p><small>Posted on {{ $item->get_date('j F Y | g:i a') }}</small></p>
+                                    </div>
+                                  </div>
+                                </div>
+                                @php 
+                                  $i++;
+                              @endphp
+                      @endforeach
+                              </div>
+                      @endif
+                  @endif
                 </div>
-            </form>
+            </div>
         </div>
     </div>
+</div>
 
-    @if(!empty($data))
-        @if (empty($data['items']))
-            <div class="alert">
-              {{('Please Enter a valid URL')}} 
-            </div>
-        @else
-            @php
-                $i = 0;
-            @endphp
-            @foreach ($data['items'] as $item)
-                  <!-- <div class="item"> -->
-                    <div class="accordion md-accordion" id="accordion" role="tablist" aria-multiselectable="true">
-                      <div class="card">
-                        <div class="card-header" role="tab" id="heading-{{$i}}">
-                            <a data-parent="#accordion" data-toggle="collapse" href="#collapse{{$i}}" aria-expanded="false" aria-controls="collapse{{$i}}">
-                              <h5 class="mb-0">{{ $item->get_title() }}</h5>
-                            </a>
-                        </div>
-
-                        <div id="collapse{{$i}}" class="collapse" role="tabpanel" aria-labelledby="heading-{{$i}}" data-parent="#accordion">
-                          <div class="card-body">
-                            <p>{!! $item->get_content() !!}</p>
-                            <p><small>Posted on {{ $item->get_date('j F Y | g:i a') }}</small></p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    @php 
-                        $i++;
-                    @endphp
-            @endforeach
-            @endif
-        @endif
-    </main>
-    
-
-    <script type="text/javascript" src= "{{ asset('jquery/jquery.min.js') }}"></script>
-    <script type="text/javascript" src= "{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
+    <!-- Main Body -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/feed.js') }}" defer></script>
 </body>
 </html>
-
-
-<!--Accordion wrapper-->
-<div class="accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
-
-  <!-- Accordion card -->
-  <div class="card">
-    <!-- Card header -->
-    <div class="card-header" role="tab" id="headingOne1">
-      <a data-toggle="collapse" data-parent="#accordionEx" href="#collapseOne1" aria-expanded="true" aria-controls="collapseOne1">
-        <h5 class="mb-0">
-          Collapsible Group Item #1 <i class="fa fa-angle-down rotate-icon"></i>
-        </h5>
-      </a>
-    </div>
-
-    <!-- Card body -->
-    <div id="collapseOne1" class="collapse show" role="tabpanel" aria-labelledby="headingOne1" data-parent="#accordionEx">
-      <div class="card-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-      </div>
-    </div>
-
-  </div>
-  <!-- Accordion card -->
-
-  <!-- Accordion card -->
-  <div class="card">
-
-    <!-- Card header -->
-    <div class="card-header" role="tab" id="headingTwo2">
-      <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx" href="#collapseTwo2" aria-expanded="false" aria-controls="collapseTwo2">
-        <h5 class="mb-0">
-          Collapsible Group Item #2 <i class="fa fa-angle-down rotate-icon"></i>
-        </h5>
-      </a>
-    </div>
-
-    <!-- Card body -->
-    <div id="collapseTwo2" class="collapse" role="tabpanel" aria-labelledby="headingTwo2" data-parent="#accordionEx">
-      <div class="card-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-      </div>
-    </div>
-
-  </div>
-  <!-- Accordion card -->
-
-  <!-- Accordion card -->
-  <div class="card">
-
-    <!-- Card header -->
-    <div class="card-header" role="tab" id="headingThree3">
-      <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx" href="#collapseThree3" aria-expanded="false" aria-controls="collapseThree3">
-        <h5 class="mb-0">
-          Collapsible Group Item #3 <i class="fa fa-angle-down rotate-icon"></i>
-        </h5>
-      </a>
-    </div>
-
-    <!-- Card body -->
-    <div id="collapseThree3" class="collapse" role="tabpanel" aria-labelledby="headingThree3" data-parent="#accordionEx">
-      <div class="card-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-      </div>
-    </div>
-
-  </div>
-  <!-- Accordion card -->
-
-</div>
-<!-- Accordion wrapper -->

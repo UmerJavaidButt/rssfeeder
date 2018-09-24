@@ -3,7 +3,7 @@
 @section('content')
 <section class="login-page container-fluid">
     <div class="row justify-content-center">
-        <div class="col-sm-12 col-md-4 col-lg-4">
+        <div class="col-sm-12 col-md-10 col-lg-6 col-xs-12">
             <div class="card login-card card-block">
                 <div class="card-body">
                     <div class="auth-box">
@@ -11,7 +11,7 @@
                             @csrf
 
                             <div class="text-center">
-                                <img src="{{asset('images/rss.png')}}" class = "login_header_img">
+                                <h3 class=" text-center txt-primary">Welcome!</h3>
                             </div>
 
                             <div class="row">
@@ -53,7 +53,7 @@
                             </div>
 
                             <div class="form-group row m-t-25 text-left">
-                                <div class="col-sm-7 col-xs-12">
+                                <div class="col-sm-5 col-xs-12">
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
                                         <label class="form-check-label" for="remember">
@@ -62,10 +62,12 @@
                                     </div>
                                 </div>
 
-                                <div class="col-sm-5 col-xs-12 text-right">
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                                <div class="col-sm-6 col-xs-12 forgot_password">
+                                <div class="form-check">
+                                    <a class="btn btn-link forgot_password" href="{{ route('password.request') }}">
                                         {{ __('Forgot Your Password?') }}
                                     </a>
+                                    </div>
                                 </div>
                             </div>
 

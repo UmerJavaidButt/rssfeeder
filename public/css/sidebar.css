@@ -7,23 +7,25 @@
     margin-top: 40px;
     border-radius: 10px;
     padding-left: 15px;
+    padding-top: 15px;
     margin-left: 45px;
 }
 
-.search-container{
-	padding-right: 15px;
-}
-
 .sidenav a {
-    padding: 6px 8px 6px 16px;
+    padding: 6px 6px 6px 6px;
     text-decoration: none;
-    font-size: 25px;
-    color: #fff;
+    font-size: 12px;
+    color: black;
     display: block;
 }
 
-.sidenav a:hover {
-    color: #fff;
+.sidenav_link{
+    color: black !important;
+}
+
+.sidenav_link:hover {
+    color: white !important;
+    background: #1abc9c !important;
 }
 
 .main {
@@ -34,5 +36,5 @@
 
 @media screen and (max-height: 450px) {
     .sidenav {padding-top: 15px;}
-    .sidenav a {font-size: 18px;}
+    .sidenav a {font-size: 10px;}
 }

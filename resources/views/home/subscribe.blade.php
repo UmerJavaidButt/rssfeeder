@@ -12,7 +12,6 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
 
     <!-- Fontawsome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -76,20 +75,19 @@
         </nav>
 
         <main class="py-4">
-          <div class="">
+          <div class="container">
             <div class="row justify-content-center">
               <div class="col-md-6">
                 <div class="card">
                   <div class="card-header">
-                    <h5>Subscribe</h5>
+                    <h5 class="text-white">Subscribe</h5>
                   </div>
                   <div class="card-body">
                     <form method="POST" action="{{ action('RssController@subscribe') }}" aria-label="{{ __('Subscribe') }}">
                     @csrf
-                    <div class="form-group row">
-                      <label for="url" class="col-md-4 col-form-label text-md-right">{{ __('Enter URL to Subscribe') }}</label>
-
-                      <div class="col-md-6">
+                    <div class="form-group row text-center">
+                      <!-- <label for="url" class="col-md-4 col-form-label text-md-center">{{ __('Enter URL to Subscribe') }}</label> -->
+                      <div class="col-md-12 text-center">
                         <input id="url" placeholder="https://helloworld.com" type="url" class="form-control{{ $errors->has('url') ? ' is-invalid' : '' }}" name="url" value="{{ old('url') }}" required autofocus>
 
                         @if ($errors->has('name'))
@@ -101,7 +99,6 @@
                     </div>
 
                     <div class="form-group row">
-                    <div class="col-md-4"></div>
                         <div class="col-md-6">
                             <button type="submit" class="btn btn_subscribe">
                                 {{ __('Subscribe') }}
@@ -117,8 +114,6 @@
       </main>
     </div>
 
-    <script type="text/javascript" src= "{{ asset('jquery/jquery.min.js') }}"></script>
-    <script type="text/javascript" src= "{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
 </body>
 </html>

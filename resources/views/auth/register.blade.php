@@ -1,18 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-<section class="register-page container-fluid">
+<section class="register-page container">
     <div class="row justify-content-center">
-        <div class="col-sm-12 col-md-5 col-lg-5">
+        <div class="col-sm-12 col-md-10 col-lg-6">
             <div class="card register-card card-block">
                 <div class="card-body">
                     <div class="auth-box">    
                         <form method="POST" action="{{ route('register') }}" aria-label="{{ __('Register') }}">
                             @csrf
-
-                            <div class="text-center">
-                                <img src="{{asset('images/rss.png')}}">
-                            </div>
 
                             <div class="row">
                                 <div class="col-md-12">

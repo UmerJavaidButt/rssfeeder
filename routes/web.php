@@ -12,7 +12,7 @@
 */
 
 Route::get('/', 'HomeController@index');
-Route::post('feed', 'RssController@feed')->name('feed');
+Route::post('feed', 'RssController@feed')->name('/feed');
 Route::get('subscribe', 'RssController@subscribe')->name('subscribe');
 Route::get('pricing', 'PricingController@index')->name('pricing');
 

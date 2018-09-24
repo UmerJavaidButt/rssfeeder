@@ -1,19 +1,22 @@
 /* Login Page */
+
+body{
+     background-size: cover !important;
+    background: url(../images/bg.jpg) no-repeat center center fixed
+}
 .container-fluid{
 	padding: 60px;
 }
 
 .register-page{
 	width: 100%;
-	background-size: cover !important;
-    background: url(../dashboard_assets/assets/images/welcome/bg.jpg) no-repeat center center fixed	
 }
 
 .register-card {
     border-radius: 10px !important;
     position: relative !important;
     display: block !important;
-    min-width: 450px !important;
+    margin-top: 40px;
 }
 
 .auth-box {
@@ -50,3 +53,37 @@
     line-height: 23px;
 }
 /* Login Page */
+
+@media only screen and (max-width: 360px) {
+    .login-card{
+        min-width: 0px !important;
+    }
+
+    .forgot_password{
+        text-align: left !important;
+        margin-left: -13px !important;
+    }
+
+    .container-fluid{
+        padding: 15px !important;
+    }
+
+
+}
+
+@media only screen and (max-width: 414px) {
+    .register-card{
+        min-width: 0px !important;
+    }
+
+    .forgot_password{
+        text-align: left !important;
+        margin-left: -13px !important;
+    }
+
+    .container-fluid{
+        padding: 15px !important;
+    }
+
+
+}

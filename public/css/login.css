@@ -1,4 +1,9 @@
 /* Login Page */
+
+body{
+    background-size: cover !important;
+    background: url(../images/bg.jpg) no-repeat center center fixed
+}
 .container-fluid{
 	padding: 60px;
 }
@@ -9,8 +14,7 @@
 
 .login-page{
 	width: 100%;
-	background-size: cover !important;
-    background: url(../dashboard_assets/assets/images/welcome/bg.jpg) no-repeat center center fixed	
+		
 }
 
 .login-card {
@@ -52,4 +56,59 @@
     font-size: 15px;
     line-height: 23px;
 }
+
+.forgot_password{
+    margin-top: -5px;
+}
 /* Login Page */
+
+@media only screen and (max-width: 360px) {
+    .login-card{
+        min-width: 0px !important;
+    }
+
+    .forgot_password{
+        text-align: left !important;
+        margin-left: -13px !important;
+    }
+
+    .container-fluid{
+        padding: 15px !important;
+    }
+
+
+}
+
+@media only screen and (max-width: 414px) {
+    .login-card{
+        min-width: 0px !important;
+    }
+
+    .forgot_password{
+        text-align: left !important;
+        margin-left: -13px !important;
+    }
+
+    .container-fluid{
+        padding: 15px !important;
+    }
+
+
+}
+
+@media only screen and (max-width: 568px) {
+    .login-card{
+        min-width: 0px !important;
+    }
+
+    .forgot_password{
+        text-align: left !important;
+        margin-left: -13px !important;
+    }
+
+    .container-fluid{
+        padding: 15px !important;
+    }
+
+
+}
