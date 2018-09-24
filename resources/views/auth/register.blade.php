@@ -6,7 +6,12 @@
         <div class="col-sm-12 col-md-10 col-lg-6">
             <div class="card register-card card-block">
                 <div class="card-body">
-                    <div class="auth-box">    
+                    <div class="auth-box">   
+                            @if (session('message'))
+                            <div class="alert alert-success">
+                                {{ session('message') }}
+                            </div>
+                            @endif 
                         <form method="POST" action="{{ route('register') }}" aria-label="{{ __('Register') }}">
                             @csrf
 

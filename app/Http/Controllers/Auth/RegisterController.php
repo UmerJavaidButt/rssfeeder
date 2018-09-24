@@ -9,7 +9,9 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
-
+use App\Mail\EmailVerification;
+use Mail;
+use Session;
 class RegisterController extends Controller
 {
     /*
@@ -69,17 +71,21 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'email_token' => str_random(15),
         ]);
     }
 
     public function register(Request $request)
     {
         $this->validator($request->all())->validate();
-        event(new Registered($user = $this->create($request->all())));
+        $user = $this->create($request->all());
 
-        dispatch(new SendVerificationEmail($user));
+        $email = new EmailVerification(new User(['email_token' => $user->email_token, 'name' => $user->name]));
 
-        return view('verification');
+        Mail::to($user->email)->send($email);
+
+        Session::flash('message', 'We have sent you a verification email!');
+        return redirect()->back();
     }
 
     /**
@@ -90,11 +96,16 @@ class RegisterController extends Controller
      */
     public function verify($token)
     {
-        $user = User::where('email_token', $token)->first();
-        $user->verified = 1;
+        try {
+            $verify_user = User::where('email_token', $token)->first();
+            if (!empty($verify_user)) {
+                $verify_user->verified();
+                return redirect('login')->with('message', 'Email Successfully Verified!');
+            }
 
-        if($user->save()){
-            return view('emailconfirm', ['user' => $user]);
+            return redirect('login')->with('message', 'Verification Link Expired');
+        } catch (Exception $e) {
+            return redirect('login')->with('message', 'Unable to Verify email Kindly check Email again!');
         }
     }
 }
