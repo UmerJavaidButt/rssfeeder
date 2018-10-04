@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Subscription;
 
 class SubscriptionController extends Controller
 {
@@ -11,19 +12,18 @@ class SubscriptionController extends Controller
         $this->middleware('auth');
     }
 
-    function subscribe(){
-    	$data = $request->all();
+    function subscribe_url(Request $request){
+        if (\Auth::user()->allowed_url > \Auth::user()->subscription()->count()) {
+        	$data = $request->all();
 
-    	if ($data) {
-    		$subscribe = new \App\Subscription;
-
-    		$subscribe->user_id = $data['user_id'];
-    		$subscribe->url = $data['url'];
-
-    		$subscribe->save();
-    		return redirect('/');
-    	} else{
-    		return redirect()->back()->withErrors(['msg', 'Could not subscribe, Try Again!']);
-    	}
+        	if ($data) {
+                \Auth::user()->subscription()->create($data);
+        		return redirect()->back()->with('message', 'Successfully Subscribed!');
+        	} else{
+        		return redirect()->back()->withErrors(['message', 'Could not subscribe, Try Again!']);
+        	}
+        }else{
+            return redirect('pricing')->with('message', 'Subscription Limit exceeded!');
+        }
     }
 }

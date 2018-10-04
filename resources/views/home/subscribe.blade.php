@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ ('RSS FEED READER') }}</title>
+    <title>{{ ('Application') }}</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -78,12 +78,17 @@
           <div class="container">
             <div class="row justify-content-center">
               <div class="col-md-6">
+              @if (session('message'))
+                <div class="alert alert-success">
+                    {{ session('message') }}
+                </div>
+                @endif
                 <div class="card">
                   <div class="card-header">
                     <h5 class="text-white">Subscribe</h5>
                   </div>
                   <div class="card-body">
-                    <form method="POST" action="{{ action('RssController@subscribe') }}" aria-label="{{ __('Subscribe') }}">
+                    <form method="POST" action="{{ route('subscribe_url') }}" aria-label="{{ __('Subscribe') }}">
                     @csrf
                     <div class="form-group row text-center">
                       <!-- <label for="url" class="col-md-4 col-form-label text-md-center">{{ __('Enter URL to Subscribe') }}</label> -->

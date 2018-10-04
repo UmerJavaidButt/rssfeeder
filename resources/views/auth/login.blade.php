@@ -7,6 +7,11 @@
             <div class="card login-card card-block">
                 <div class="card-body">
                     <div class="auth-box">
+                    @if (session('message'))
+                            <div class="alert alert-success">
+                                {{ session('message') }}
+                            </div>
+                            @endif
                         <form method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}">
                             @csrf
 

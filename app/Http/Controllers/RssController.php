@@ -15,7 +15,23 @@ class RssController extends Controller
 
     //
     function index(){
-    	return view('home.feeds');
+        //$subscriptions = \Auth::user()->subscription()->get();
+        $feed = Feeds::make("https://thehalloweenspirit.com/collections/all.atom");
+
+        $data = array(
+            'title'     => $feed->get_title(),
+            'permalink' => $feed->get_permalink(),
+            'items'     => $feed->get_items(),
+        );
+    	return view('home.feeds', compact('data'));
+    }
+
+    function competitors(){
+        return view('home.competitors');
+    }
+
+    function savedProducts(){
+        return view('home.saved_products');
     }
 
     function subscribe(){
@@ -23,9 +39,11 @@ class RssController extends Controller
     }
 
     function feed(Request $request){
+        $subscriptions = \Auth::user()->subscription()->get();
         $extention = '/collections/all.atom';
         //$https = 'https://';
     	$url = $request->get('url');
+        // /return $url;
     	$feed = Feeds::make($url.$extention);
 
         $data = array(
@@ -34,7 +52,7 @@ class RssController extends Controller
             'items'     => $feed->get_items(),
         );
 
-        return view('home.feeds', compact('data'));
+        return view('home.feeds', compact('data', 'subscriptions'));
         
     }
 }

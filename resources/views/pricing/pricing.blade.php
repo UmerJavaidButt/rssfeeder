@@ -78,7 +78,13 @@
             <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
                 <h1>Pricing</h1>
                 <p>Kindly choose a Subscription Plan of your choice!</p>
+                @if (session('message'))
+                <div class="alert alert-success">
+                    {{ session('message') }}
+                </div>
+                @endif
             </div>
+
 
             <div class="container">
                 <div class="card-deck mb-3 text-center">
@@ -98,9 +104,9 @@
                                   <li>No time limits</li>
                               </ul>
 
-                              <button type="button" class="btn btn-lg btn-block btn-outline-primary">
+                              <a type="button" class="btn btn-lg btn-block btn-outline-primary">
                                   Get Offer!
-                              </button>
+                              </a>
                           </div>
                         </div>
 
@@ -120,9 +126,9 @@
                                   <li>No time limits</li>
                               </ul>
 
-                              <button type="button" class="btn btn-lg btn-block btn-outline-primary">
+                              <a href="/addmoney/stripe/4.99" type="button" class="btn btn-lg btn-block btn-outline-primary">
                                   Get Offer!
-                              </button>
+                              </a>
                           </div>
                         </div>
 
@@ -142,9 +148,9 @@
                                   <li>No time limits</li>
                               </ul>
 
-                              <button type="button" class="btn btn-lg btn-block btn-outline-primary">
+                              <a href="/addmoney/stripe/9.99" type="button" class="btn btn-lg btn-block btn-outline-primary">
                                   Get Offer!
-                              </button>
+                              </a>
                           </div>
                         </div>
 
@@ -164,9 +170,9 @@
                                   <li>No time limits</li>
                               </ul>
 
-                              <button type="button" class="btn btn-lg btn-block btn-outline-primary">
+                              <a href="/addmoney/stripe/19.99" type="button" class="btn btn-lg btn-block btn-outline-primary">
                                   Get Offer!
-                              </button>
+                              </a>
                           </div>
                         </div>
                 </div>

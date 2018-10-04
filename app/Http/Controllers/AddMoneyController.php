@@ -8,15 +8,16 @@ use Session;
 use Redirect;
 use Input;
 use App\User;
+use App\Payment;
 use Stripe\Error\Card;
 use Cartalyst\Stripe\Stripe;
 
 class AddMoneyController extends Controller
 {
     //
-    public function payWithStripe()
+    public function payWithStripe($amount)
     {
-        return view('pricing.paywithstripe');
+        return view('pricing.paywithstripe', compact('amount'));
     }
     public function postPaymentWithStripe(Request $request)
     {
@@ -25,7 +26,7 @@ class AddMoneyController extends Controller
         'ccExpiryMonth' => 'required',
         'ccExpiryYear' => 'required',
         'cvvNumber' => 'required',
-        //'amount' => 'required',
+        'amount' => 'required',
         ]);
         $input = $request->all();
         if ($validator->passes()) { 
@@ -54,17 +55,39 @@ class AddMoneyController extends Controller
         $charge = $stripe->charges()->create([
             'card' => $token['id'],
             'currency' => 'USD',
-            'amount' => 10.49,
+            'amount' => $request->get('amount'),
             'description' => 'Add in wallet',
             ]);
  
         if($charge['status'] == 'succeeded') {
- /**
- * Write Here Your Database insert logic.
+ /*
+ Business Logic Payment table
  */
-        echo "<pre>";
-        print_r($charge);exit();
-        return redirect()->route('addmoney.paywithstripe');
+
+$payment = new Payment;
+$payment->user_id = \Auth::user()->id;
+$payment->token = $token['id'];
+$payment->transaction_id = $charge['id'];
+$payment->response = json_encode($charge);
+
+$payment->save();
+
+/*
+ Business Logic Payment table
+ */
+$amount =  $request->get('amount');
+ if ($amount >= 4.99 && $amount < 9.99) {
+     \Auth::user()->allowed_url += 10;
+     \Auth::user()->save();
+ } elseif($amount >= 9.99 && $amount < 19.99){
+    \Auth::user()->allowed_url += 25;
+     \Auth::user()->save();
+ } elseif ($amount >= 19.99) {
+     \Auth::user()->allowed_url = 214748364;
+     \Auth::user()->save();
+ }
+
+return redirect('/')->with('message','You have successfully Purchased!');
     } else {
         \Session::put('error','Money not add in wallet!!');
         return redirect()->route('addmoney.paywithstripe');

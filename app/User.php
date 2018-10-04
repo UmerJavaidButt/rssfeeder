@@ -19,6 +19,10 @@ class User extends Authenticatable
         'name', 'email', 'password','email_token'
     ];
 
+    public function subscription(){
+        return $this->hasMany('App\Subscription');
+    }
+
     /**
      * The attributes that should be hidden for arrays.
      *
