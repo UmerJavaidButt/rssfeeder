@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateScrappedDataTable extends Migration
+class CreateSavedProductTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class CreateScrappedDataTable extends Migration
      */
     public function up()
     {
-        Schema::create('scrapped_data', function (Blueprint $table) {
+        Schema::create('saved_products', function (Blueprint $table) {
             $table->increments('id');
-            $table->text('post_title');
-            $table->text('post_url');
-            $table->text('post_description');
-            $table->dateTime('post_date');
+            $table->tinyInteger('favorit_bit');
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ class CreateScrappedDataTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('scrapped_data');
+        Schema::dropIfExists('saved_products');
     }
 }

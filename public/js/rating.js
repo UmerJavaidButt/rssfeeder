@@ -102,6 +102,7 @@ $(document).ready(function() {
             showSelectedRating: false,
             initialRating: currentRating,
             onSelect: function(value, text) {
+                alert(value);
                 if (!value) {
                     $('.example-fontawesome-o')
                         .barrating('clear');

@@ -217,7 +217,7 @@
                 <!-- Documents card start -->
                 <div class="col-md-12 col-xl-12">
                 
-                      <div class="accordion md-accordion" id="accordion" role="tablist" aria-multiselectable="true">
+                      <div class="accordion md-accordion" id="accordion" role="tablist" aria-multiselectable="false">
                       
                             <div class="item">
                                 <div class="cardclient-blocks dark-primary-border">
@@ -225,7 +225,7 @@
                                       <a data-parent="#accordion" data-toggle="collapse" data-target="#collapse" aria-expanded="false" aria-controls="collapse">
                                         <h5 class="mb-0">
                                           <div class="stars stars-example-fontawesome-o">
-                                            <select id="example-fontawesome-o" name="rating" data-current-rating="0" autocomplete="off">
+                                            <select class="example-fontawesome-o rating1" name="rating" data-current-rating="0" autocomplete="off">
                                                 <option value="" label="0"></option>
                                                 <option value="1">1</option>
                                             </select>
@@ -246,17 +246,14 @@
                                 </div>
                                 
                             </div>
-                      </div>
 
-                      <div class="accordion md-accordion" id="accordion1" role="tablist" aria-multiselectable="true">
-                      
                             <div class="item">
                                 <div class="cardclient-blocks dark-primary-border">
                                   <div class="card-header" role="tab" id="heading1">
-                                      <a data-parent="#accordion1" data-toggle="collapse1" data-target="#collapse1" aria-expanded="false" aria-controls="collapse">
+                                      <a data-parent="#accordion" data-toggle="collapse" data-target="#collapse1" aria-expanded="false" aria-controls="collapse">
                                         <h5 class="mb-0">
                                           <div class="stars stars-example-fontawesome-o">
-                                            <select class="example-fontawesome-o1" name="rating" data-current-rating="0" autocomplete="off">
+                                            <select class="example-fontawesome-o rating 2" name="rating" data-current-rating="0" autocomplete="off">
                                                 <option value="" label="0"></option>
                                                 <option value="1">1</option>
                                             </select>
@@ -268,7 +265,7 @@
                                       </a>
                                   </div>
 
-                                  <div id="collapse1" class="collapse" role="tabpanel" aria-labelledby="heading1" data-parent="#accordion1">
+                                  <div id="collapse1" class="collapse" role="tabpanel" aria-labelledby="heading1" data-parent="#accordion">
                                     <div class="card-body" style="background:white">
                                       <p>Something like aloo</p>
                                       <p><small>Posted on 12</small></p>
@@ -277,6 +274,8 @@
                                 </div>
                                 
                             </div>
+
+
                       </div>
             </div>
         </div>
