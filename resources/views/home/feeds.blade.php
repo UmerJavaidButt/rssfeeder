@@ -48,15 +48,6 @@
     <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
         <div class="navbar-wrapper container text-center">
         <span class="sitename text-center">Site name</span>
-            <!-- <a class="navbar-brand" href="{{ route('subscribe') }}">
-                {{ ('Subscribe') }}
-            </a>
-
-            <span class="navbar-brand">|</span>
-
-            <a class="navbar-brand" href="{{route('pricing')}}">
-                Pricing
-            </a> -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -104,21 +95,13 @@
     <!-- Sidebar starts -->
 
   <div class="main-menu">
-    <!-- <div class="main-menu-header">
+    <div class="main-menu-header">
         <img class="img-40" src="{{asset('images/user.png')}}" alt="User-Profile-Image">
-        <div class="user-details">
-            <span>Welcome {{ Auth::user()->name }}</span>
-        </div>
-    </div> -->
-
-    <div class="main-menu-content">
-      <div class="main-menu-header">
-          <img class="img-40" src="{{asset('images/user.png')}}" alt="User-Profile-Image">
           <div class="user-details">
               <span>{{ Auth::user()->name }}</span>
               <a id="more-details">Managae Account<i class="ti-angle-down"></i></a>
           </div>
-      </div>
+    </div>
     <div class="main-menu-content">
         <ul class="main-navigation">
           <li class="nav-title" data-i18n="nav.category.navigation">
@@ -150,26 +133,6 @@
                     </li>
                   </ul>
                 </a>
-                  <!-- <form action="/feed" method="post">
-                  {{csrf_field()}}
-                      <div class="form-group col-md-12">
-                          <input class="form-control" type="text" placeholder="https://example.com" name="url">
-                      </div>
-                  </form> -->
-
-                  <!-- <div class="form-group col-md-12">
-                    <div class="form-control col-md-11 main_menu">
-                    @if(!empty($subscriptions))
-                      @foreach($subscriptions as $subscribe)
-                      <form action="/feed" method="post" id="form{{$subscribe->id}}">
-                      {{csrf_field()}}
-                        <input type="hidden" name="url" value="{{$subscribe->url}}">
-                        <a href="javascript:void(0)" onclick="submitForm('form{{$subscribe->id}}')" class="sidenav_link">{{$subscribe->url}}</a>
-                      </form>
-                      @endforeach
-                    @endif
-                    </div>
-                  </div> -->
               </div>
             </li>
         </ul>
@@ -180,7 +143,6 @@
               <span>Signout</span>
             </a>
       </div>  
-      </div>
     </div>
   </div>
 
@@ -191,25 +153,31 @@
   <div class="main-body">
     <div class="page-wrapper">
         <div class="page-header row">
-          <div class="page-header-title">  
-              <div class="left-items col-md-6">
-              <form action="/feed" method="post">
-                    {{csrf_field()}}
-                  <div class="item-left-search">
-                      <input class="form-control search-bar-main" type="text" placeholder="https://example.com" aria-label="Search">
+           <nav class="navbar header-navbar">
+              <div class="navbar-wrapper">
+                  
+                  <div class="navbar-container">
+                      <div class="row">
+                          <ul class="nav-left col-md-8 col-sm-12 col-xs-12">
+                               <div class=" ">
+                                  <form action="/feed" method="post">
+                                      {{csrf_field()}}
+                                    <div class="item-left-search">
+                                        <input class="form-control search-bar-main" type="text" placeholder="https://example.com" aria-label="Search">
+                                    </div>
+                                    <div class="left-item-btn">
+                                      <button class="btn btn-default btn-add btn-md">Add</button>
+                                    </div>
+                                  </form>
+                                </div> 
+                          </ul>
+                          <ul class="nav-right col-md-4 col-sm-12 col-xs-12">
+                              <button class="btn btn-default btn-add btn-md date_filter" id="datefilter">Filter</button>
+                          </ul>
+                      </div>
                   </div>
-                  <div class="left-item-btn">
-                    <button class="btn btn-default btn-add btn-md">Add</button>
-                  </div>
-                </form>
               </div>
-
-              <div class="right-items">
-                <div class="active-cyan-4 mb-6">
-                  <button class="btn btn-default btn-add btn-md" id="datefilter">Filter</button>
-                </div>
-              </div>
-            </div>
+          </nav>
         </div>
         <div class="page-body">
        

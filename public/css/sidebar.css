@@ -2,7 +2,7 @@
     width: 230px;
     position: fixed;
     z-index: 1;
-    background: #1abc9c;
+    background: #212529;
     overflow-x: hidden;
     margin-top: 40px;
     border-radius: 10px;
@@ -25,7 +25,7 @@
 
 .sidenav_link:hover {
     color: white !important;
-    background: #1abc9c !important;
+    background: #212529 !important;
 }
 
 .main {
