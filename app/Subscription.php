@@ -15,7 +15,7 @@ class Subscription extends Model
     	return $this->belongsTo('App\User', 'user_id');
     }
 
-    public function scrapped_data(){
+    public function scrappedData(){
         return $this->hasMany('App\ScrappedData');
     }
 }

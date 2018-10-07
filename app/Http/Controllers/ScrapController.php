@@ -24,7 +24,7 @@ class ScrapController extends Controller
                     $data['post_title'] =  $item->get_title();
                     $data['post_description'] =  base64_encode($item->get_content());
                     $data['post_date'] =   $item->get_date('Y-m-d h:m:i');
-                    $subscription->scrapped_data()->updateOrCreate(['post_title'=>$item->get_title()],$data);
+                    $subscription->scrappedData()->updateOrCreate(['post_title'=>$item->get_title()],$data);
                 }
             }
         }

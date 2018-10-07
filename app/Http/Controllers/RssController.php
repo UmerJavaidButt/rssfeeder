@@ -16,8 +16,8 @@ class RssController extends Controller
 
     //
     function index(){
-        $subscriptions = \Auth::user()->subscription()->scrapped_data()->paginate(10);
-        return $subscriptions;
+        $subscriptions = \Auth::user()->subscription()->with('scrappedData')->with('scrappedData.savedProduct')->get();
+        //return $subscriptions;
     	return view('home.feeds', compact('subscriptions'));
     }
 
@@ -32,24 +32,5 @@ class RssController extends Controller
     function subscribe(){
         return view('home.subscribe');
     }
-
-    function feed(Request $request){
-        $subscriptions = \Auth::user()->subscription()->get();
-        $extention = '/collections/all.atom';
-        //$https = 'https://';
-    	$url = $request->get('url');
-        // /return $url;
-    	$feed = Feeds::make($url.$extention);
-
-        $data = array(
-            'title'     => $feed->get_title(),
-            'permalink' => $feed->get_permalink(),
-            'items'     => $feed->get_items(),
-        );
-
-        return view('home.feeds', compact('data', 'subscriptions'));
-        
-    }
-
 
 }

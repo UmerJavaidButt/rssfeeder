@@ -187,29 +187,31 @@
                 
                       <div class="accordion md-accordion" id="accordion" role="tablist" aria-multiselectable="false">
                             @foreach($subscriptions as $subscription)
-                                @foreach($subscription->scrapped_data as $item)
+                                @foreach($subscription->scrappedData as $item)
                             <div class="item">
                                 <div class="cardclient-blocks dark-primary-border">
                                   <div class="card-header" role="tab" id="heading">
                                       <a data-parent="#accordion{{$item->id}}" data-toggle="collapse" data-target="#collapse{{$item->id}}" aria-expanded="false" aria-controls="collapse">
                                         <h5 class="mb-0">
+                                            <small class="f-right" id="small-title">{{$item->post_date}}</small>
                                           <div class="stars stars-example-fontawesome-o">
-                                            <select class="example-fontawesome-o rating1" name="rating" data-current-rating="0" autocomplete="off">
+                                            <select class="example-fontawesome-o rating1" name="rating" data-current-rating="0" autocomplete="off" >
                                                 <option value="" label="0"></option>
-                                                <option value="1">1</option>
+                                                <option value="1" >1</option>
                                             </select>
 
-                                            <small id="small-title">Website Name</small>
-                                            Title
+                                            
+
                                           </div>
+                                          <small id="small-title">{{$subscription->url}}</small>
+                                            {{$item->post_title}}
                                         </h5>
                                       </a>
                                   </div>
 
                                   <div id="collapse{{$item->id}}" class="collapse" role="tabpanel" aria-labelledby="heading" data-parent="#accordion{{$item->id}}">
                                     <div class="card-body" style="background:white">
-                                      <p>Something like aloo</p>
-                                      <p><small>Posted on 12</small></p>
+                                      <p>{!!base64_decode($item->post_description)!!}</p>
                                     </div>
                                   </div>
                                 </div>
@@ -217,35 +219,6 @@
                             </div>
                             @endforeach
                             @endforeach
-                            {{$users->render("pagination::bootstrap-4")}}
-                            <div class="item">
-                                <div class="cardclient-blocks dark-primary-border">
-                                  <div class="card-header" role="tab" id="heading1">
-                                      <a data-parent="#accordion" data-toggle="collapse" data-target="#collapse1" aria-expanded="false" aria-controls="collapse">
-                                        <h5 class="mb-0">
-                                          <div class="stars stars-example-fontawesome-o">
-                                            <select class="example-fontawesome-o rating 2" name="rating" data-current-rating="0" autocomplete="off">
-                                                <option value="" label="0"></option>
-                                                <option value="1">1</option>
-                                            </select>
-
-                                            <small id="small-title">Website Name</small>
-                                            Title
-                                          </div>
-                                        </h5>
-                                      </a>
-                                  </div>
-
-                                  <div id="collapse1" class="collapse" role="tabpanel" aria-labelledby="heading1" data-parent="#accordion">
-                                    <div class="card-body" style="background:white">
-                                      <p>Something like aloo</p>
-                                      <p><small>Posted on 12</small></p>
-                                    </div>
-                                  </div>
-                                </div>
-                                
-                            </div>
-
 
                       </div>
             </div>
@@ -266,7 +239,7 @@
 
     <!-- rating js -->
     <script type="text/javascript" src="{{ asset('jquery-bar-rating/jquery.barrating.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js//rating.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/rating.js') }}"></script>
     
     
     <script src="{{ asset('js/feed.js') }}"></script>
@@ -282,6 +255,11 @@
             }
         });
     });
+    </script>
+    <script>
+    $('.stars-example-fontawesome-o div').on('click', function(e){
+        alert("adasd");
+    })
     </script>
 </body>
 </html>

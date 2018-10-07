@@ -15,4 +15,7 @@ class ScrappedData extends Model
     public function subscription(){
     	return $this->belongsTo('App\Subscription', 'subscription_id');
     }
+    public function savedProduct(){
+        return $this->hasOne('App\SavedProducts', 'scrapped_id');
+    }
 }
