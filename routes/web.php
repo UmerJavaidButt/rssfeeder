@@ -23,3 +23,6 @@ Route::get('pricing', 'PricingController@index')->name('pricing');
 Route::get('verify/{email_token}','Auth\RegisterController@verify');
 Route::get('addmoney/stripe/{amount}', array('as' => 'addmoney.paywithstripe','uses' => 'AddMoneyController@payWithStripe'));
 Route::post('addmoney/stripe', array('as' => 'addmoney.stripe','uses' => 'AddMoneyController@postPaymentWithStripe'));
+
+Route::get('scrapper', 'ScrapController@rss_scrap')->name('scrapper');
+

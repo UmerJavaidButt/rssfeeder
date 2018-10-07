@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use FeedReader;
 use Feeds;
+use App\Subscription;
 class RssController extends Controller
 {
 
@@ -15,15 +16,9 @@ class RssController extends Controller
 
     //
     function index(){
-        //$subscriptions = \Auth::user()->subscription()->get();
-        $feed = Feeds::make("https://thehalloweenspirit.com/collections/all.atom");
-
-        $data = array(
-            'title'     => $feed->get_title(),
-            'permalink' => $feed->get_permalink(),
-            'items'     => $feed->get_items(),
-        );
-    	return view('home.feeds', compact('data'));
+        $subscriptions = \Auth::user()->subscription()->scrapped_data()->paginate(10);
+        return $subscriptions;
+    	return view('home.feeds', compact('subscriptions'));
     }
 
     function competitors(){
@@ -55,4 +50,6 @@ class RssController extends Controller
         return view('home.feeds', compact('data', 'subscriptions'));
         
     }
+
+
 }

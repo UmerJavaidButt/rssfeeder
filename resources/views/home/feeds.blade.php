@@ -218,11 +218,12 @@
                 <div class="col-md-12 col-xl-12">
                 
                       <div class="accordion md-accordion" id="accordion" role="tablist" aria-multiselectable="false">
-                      
+                            @foreach($subscriptions as $subscription)
+                                @foreach($subscription->scrapped_data as $item)
                             <div class="item">
                                 <div class="cardclient-blocks dark-primary-border">
                                   <div class="card-header" role="tab" id="heading">
-                                      <a data-parent="#accordion" data-toggle="collapse" data-target="#collapse" aria-expanded="false" aria-controls="collapse">
+                                      <a data-parent="#accordion{{$item->id}}" data-toggle="collapse" data-target="#collapse{{$item->id}}" aria-expanded="false" aria-controls="collapse">
                                         <h5 class="mb-0">
                                           <div class="stars stars-example-fontawesome-o">
                                             <select class="example-fontawesome-o rating1" name="rating" data-current-rating="0" autocomplete="off">
@@ -237,7 +238,7 @@
                                       </a>
                                   </div>
 
-                                  <div id="collapse" class="collapse" role="tabpanel" aria-labelledby="heading" data-parent="#accordion">
+                                  <div id="collapse{{$item->id}}" class="collapse" role="tabpanel" aria-labelledby="heading" data-parent="#accordion{{$item->id}}">
                                     <div class="card-body" style="background:white">
                                       <p>Something like aloo</p>
                                       <p><small>Posted on 12</small></p>
@@ -246,7 +247,9 @@
                                 </div>
                                 
                             </div>
-
+                            @endforeach
+                            @endforeach
+                            {{$users->render("pagination::bootstrap-4")}}
                             <div class="item">
                                 <div class="cardclient-blocks dark-primary-border">
                                   <div class="card-header" role="tab" id="heading1">
