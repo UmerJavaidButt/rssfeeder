@@ -39,6 +39,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/sidebar.css') }}" rel="stylesheet">
     <link href="{{ asset('icofont/css/icofont.css') }}" rel="stylesheet">
+    <link href="{{ asset('masonry/masonry.css') }}" rel="stylesheet">
 
     <!-- Style.css -->
     <link rel="stylesheet" type="text/css" href="{{asset('css/sidebar/style.css')}}">
@@ -111,7 +112,7 @@
             <li class="nav-item single-item">
                 <div>
                 <a href="{{url('/')}}">
-                  <ul class="active">
+                  <ul>
                     <li>
                       <span>Your Agent List</span>
                     </li>
@@ -119,7 +120,7 @@
                 </a>
 
                 <a href="{{route('competitors')}}">
-                  <ul>
+                  <ul class="active">
                     <li>
                       <span>Competitors</span>
                     </li>
@@ -138,10 +139,16 @@
         </ul>
 
       <div class="signout">
-            <a href="#">
+            <a href="{{ route('logout') }}"
+             onclick="event.preventDefault();
+                           document.getElementById('logout-form').submit();">
               <i class="icofont icofont-logout"></i>
               <span>Signout</span>
             </a>
+
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
       </div>  
     </div>
   </div>
@@ -172,7 +179,17 @@
                                 </div> 
                           </ul>
                           <ul class="nav-right col-md-4 col-sm-12 col-xs-12">
-                              <button class="btn btn-default btn-add btn-md date_filter" id="datefilter">Filter</button>
+                              <div class=" ">
+                                  <form action="/feed" method="post">
+                                      {{csrf_field()}}
+                                    <div class="item-left-search">
+                                        <input class="form-control search-bar-main" type="text" placeholder="Input" aria-label="Search">
+                                    </div>
+                                    <div class="left-item-btn">
+                                      <button class="btn btn-default btn-add btn-md">Search</button>
+                                    </div>
+                                  </form>
+                                </div> 
                           </ul>
                       </div>
                   </div>
@@ -181,70 +198,101 @@
         </div>
         <div class="page-body">
        
-            <div class="row">
-                <!-- Documents card start -->
-                <div class="col-md-12 col-xl-12">
-                
-                      <div class="accordion md-accordion" id="accordion" role="tablist" aria-multiselectable="false">
-                      
-                            <div class="item">
-                                <div class="cardclient-blocks dark-primary-border">
-                                  <div class="card-header" role="tab" id="heading">
-                                      <a data-parent="#accordion" data-toggle="collapse" data-target="#collapse" aria-expanded="false" aria-controls="collapse">
-                                        <h5 class="mb-0">
-                                          <div class="stars stars-example-fontawesome-o">
-                                            <select class="example-fontawesome-o rating1" name="rating" data-current-rating="0" autocomplete="off">
-                                                <option value="" label="0"></option>
-                                                <option value="1">1</option>
-                                            </select>
-
-                                            <small id="small-title">Website Name</small>
-                                            Title
-                                          </div>
-                                        </h5>
-                                      </a>
-                                  </div>
-
-                                  <div id="collapse" class="collapse" role="tabpanel" aria-labelledby="heading" data-parent="#accordion">
-                                    <div class="card-body" style="background:white">
-                                      <p>Something like aloo</p>
-                                      <p><small>Posted on 12</small></p>
-                                    </div>
-                                  </div>
-                                </div>
-                                
-                            </div>
-
-                            <div class="item">
-                                <div class="cardclient-blocks dark-primary-border">
-                                  <div class="card-header" role="tab" id="heading1">
-                                      <a data-parent="#accordion" data-toggle="collapse" data-target="#collapse1" aria-expanded="false" aria-controls="collapse">
-                                        <h5 class="mb-0">
-                                          <div class="stars stars-example-fontawesome-o">
-                                            <select class="example-fontawesome-o rating 2" name="rating" data-current-rating="0" autocomplete="off">
-                                                <option value="" label="0"></option>
-                                                <option value="1">1</option>
-                                            </select>
-
-                                            <small id="small-title">Website Name</small>
-                                            Title
-                                          </div>
-                                        </h5>
-                                      </a>
-                                  </div>
-
-                                  <div id="collapse1" class="collapse" role="tabpanel" aria-labelledby="heading1" data-parent="#accordion">
-                                    <div class="card-body" style="background:white">
-                                      <p>Something like aloo</p>
-                                      <p><small>Posted on 12</small></p>
-                                    </div>
-                                  </div>
-                                </div>
-                                
-                            </div>
-
-
-                      </div>
+        <div class="row">
+            <!-- Documents card start -->
+            <div class="col-md-12 col-xl-12 col-sm-12 col-xs-12">
+              <div class="masonry">
+               <div class="item">Lorem ipsum1</div>
+               <div class="item">Lorem ipsum2</div>
+               <div class="item">Lorem ipsum3</div>
+               <div class="item">Lorem ipsum4</div>
+               <div class="item">Lorem ipsum5</div>
+               <div class="item">Lorem ipsum6</div>
+               <div class="item">Lorem ipsum7</div>
+               <div class="item">Lorem ipsum8</div>
+               <div class="item">Lorem ipsum9</div>
+               <div class="item">Lorem ipsum0</div>
+               <div class="item">Lorem ipsum1</div>
+               <div class="item">Lorem ipsum2</div>
+               <div class="item">Lorem ipsum3</div>
+               <div class="item">Lorem ipsum4</div>
+               <div class="item">Lorem ipsum5</div>
+               <div class="item">Lorem ipsum6</div>
+               <div class="item">Lorem ipsum7</div>
+               <div class="item">Lorem ipsum8</div>
+               <div class="item">Lorem ipsum9</div>
+               <div class="item">Lorem ipsum0</div>
+               <div class="item">Lorem ipsum1</div>
+               <div class="item">Lorem ipsum2</div>
+               <div class="item">Lorem ipsum3</div>
+               <div class="item">Lorem ipsum4</div>
+               <div class="item">Lorem ipsum5</div>
+               <div class="item">Lorem ipsum6</div>
+               <div class="item">Lorem ipsum7</div>
+               <div class="item">Lorem ipsum8</div>
+               <div class="item">Lorem ipsum9</div>
+               <div class="item">Lorem ipsum0</div>
+               <div class="item">Lorem ipsum1</div>
+               <div class="item">Lorem ipsum2</div>
+               <div class="item">Lorem ipsum3</div>
+               <div class="item">Lorem ipsum4</div>
+               <div class="item">Lorem ipsum5</div>
+               <div class="item">Lorem ipsum6</div>
+               <div class="item">Lorem ipsum7</div>
+               <div class="item">Lorem ipsum8</div>
+               <div class="item">Lorem ipsum9</div>
+               <div class="item">Lorem ipsum0</div>
+               <div class="item">Lorem ipsum1</div>
+               <div class="item">Lorem ipsum2</div>
+               <div class="item">Lorem ipsum3</div>
+               <div class="item">Lorem ipsum4</div>
+               <div class="item">Lorem ipsum5</div>
+               <div class="item">Lorem ipsum6</div>
+               <div class="item">Lorem ipsum7</div>
+               <div class="item">Lorem ipsum8</div>
+               <div class="item">Lorem ipsum9</div>
+               <div class="item">Lorem ipsum0</div>
+               <div class="item">Lorem ipsum11</div>
+               <div class="item">Lorem ipsum22</div>
+               <div class="item">Lorem ipsum33</div>
+               <div class="item">Lorem ipsum44</div>
+               <div class="item">Lorem ipsum55</div>
+               <div class="item">Lorem ipsum66</div>
+               <div class="item">Lorem ipsum77</div>
+               <div class="item">Lorem ipsum88</div>
+               <div class="item">Lorem ipsum99</div>
+               <div class="item">Lorem ipsum00</div>
+               <div class="item">Lorem ipsum11</div>
+               <div class="item">Lorem ipsum22</div>
+               <div class="item">Lorem ipsum33</div>
+               <div class="item">Lorem ipsum44</div>
+               <div class="item">Lorem ipsum55</div>
+               <div class="item">Lorem ipsum66</div>
+               <div class="item">Lorem ipsum77</div>
+               <div class="item">Lorem ipsum88</div>
+               <div class="item">Lorem ipsum99</div>
+               <div class="item">Lorem ipsum00</div>
+               <div class="item">Lorem ipsum1</div>
+               <div class="item">Lorem ipsum2</div>
+               <div class="item">Lorem ipsum3</div>
+               <div class="item">Lorem ipsum4</div>
+               <div class="item">Lorem ipsum5</div>
+               <div class="item">Lorem ipsum6</div>
+               <div class="item">Lorem ipsum7</div>
+               <div class="item">Lorem ipsum8</div>
+               <div class="item">Lorem ipsum9</div>
+               <div class="item">Lorem ipsum0</div>
+               <div class="item">Lorem ipsum1</div>
+               <div class="item">Lorem ipsum2</div>
+               <div class="item">Lorem ipsum3</div>
+               <div class="item">Lorem ipsum4</div>
+               <div class="item">Lorem ipsum5</div>
+               <div class="item">Lorem ipsum6</div>
+               <div class="item">Lorem ipsum7</div>
+               <div class="item">Lorem ipsum8</div>
+               <div class="item">Lorem ipsum9</div>
+               <div class="item">Lorem ipsum0</div>
+            </div>
             </div>
         </div>
     </div>
@@ -267,7 +315,9 @@
     
     
     <script src="{{ asset('js/feed.js') }}"></script>
-
+    <!--[if lte IE 9]>
+    <script src="{{ asset('masonry/masonry.pkgd.min.js') }}"></script>
+    <![endif]-->
 
     <!-- Custom JS -->
     <script>

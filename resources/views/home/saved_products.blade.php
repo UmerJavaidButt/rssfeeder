@@ -111,7 +111,7 @@
             <li class="nav-item single-item">
                 <div>
                 <a href="{{url('/')}}">
-                  <ul class="active">
+                  <ul>
                     <li>
                       <span>Your Agent List</span>
                     </li>
@@ -127,7 +127,7 @@
                 </a>
 
                 <a href="{{route('savedProducts')}}">  
-                  <ul>
+                  <ul class="active">
                     <li>
                       <span>Saved Products</span>
                     </li>
@@ -138,9 +138,16 @@
         </ul>
 
       <div class="signout">
-            <a href="#">
+            <a href="{{ route('logout') }}"
+             onclick="event.preventDefault();
+                           document.getElementById('logout-form').submit();">
               <i class="icofont icofont-logout"></i>
               <span>Signout</span>
+            </a>
+
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
             </a>
       </div>  
     </div>

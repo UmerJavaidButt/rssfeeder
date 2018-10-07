@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ ('RSS FEED READER') }}</title>
+    <title>{{ ('APPLICATION') }}</title>
     
 
     <!-- Fonts -->

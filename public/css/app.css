@@ -17,6 +17,7 @@
  			font-weight: bold;
  			font-size: 18px;
  		}
+
  	.navbar-light .navbar-nav .nav-link{
  		font-family: "Courier New", Courier, monospace;
 		color: white;
@@ -27,16 +28,22 @@
  		color: rgba(0,0,0,.7);
  	}
 
+ 	.page-body{
+ 		margin-left: -1.8rem;
+ 		margin-right: -1.8rem;
+ 		margin-top: -15px;
+ 	}
+
  	.btn-outline-primary{
  		color: white;
- 		background: #1abc9c;
- 		border-color: #1abc9c;
+ 		background: #212529;
+ 		border-color: #212529;
  	}
 
  	.btn-outline-primary:focus, .btn-outline-primary:hover{
- 		color: #1abc9c;
+ 		color: #212529;
  		background: white;
- 		border-color: #1abc9c;
+ 		border-color: #212529;
  	}
 
  	.navbar-wrapper{

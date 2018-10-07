@@ -138,10 +138,16 @@
         </ul>
 
       <div class="signout">
-            <a href="#">
+            <a href="{{ route('logout') }}"
+             onclick="event.preventDefault();
+                           document.getElementById('logout-form').submit();">
               <i class="icofont icofont-logout"></i>
               <span>Signout</span>
             </a>
+
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
       </div>  
     </div>
   </div>
@@ -163,7 +169,7 @@
                                   <form action="/feed" method="post">
                                       {{csrf_field()}}
                                     <div class="item-left-search">
-                                        <input class="form-control search-bar-main" type="text" placeholder="https://example.com" aria-label="Search">
+                                        <input name="url" class="form-control search-bar-main" type="text" placeholder="https://example.com" aria-label="Search">
                                     </div>
                                     <div class="left-item-btn">
                                       <button class="btn btn-default btn-add btn-md">Add</button>
@@ -184,13 +190,22 @@
             <div class="row">
                 <!-- Documents card start -->
                 <div class="col-md-12 col-xl-12">
+                @if(!empty($data))
+                  @if (empty($data['items']))
+                      <div class="alert">
+                        {{('Please Enter a valid URL')}} 
+                      </div>
+                  @else
+                      @php
+                          $i = 0;
+                      @endphp
                 
                       <div class="accordion md-accordion" id="accordion" role="tablist" aria-multiselectable="false">
-                      
+                      @foreach ($data['items'] as $item)
                             <div class="item">
                                 <div class="cardclient-blocks dark-primary-border">
                                   <div class="card-header" role="tab" id="heading">
-                                      <a data-parent="#accordion" data-toggle="collapse" data-target="#collapse" aria-expanded="false" aria-controls="collapse">
+                                      <a data-parent="#accordion" data-toggle="collapse" data-target="#collapse-{{$i}}" aria-expanded="false" aria-controls="collapse">
                                         <h5 class="mb-0">
                                           <div class="stars stars-example-fontawesome-o">
                                             <select class="example-fontawesome-o rating1" name="rating" data-current-rating="0" autocomplete="off">
@@ -198,53 +213,28 @@
                                                 <option value="1">1</option>
                                             </select>
 
-                                            <small id="small-title">Website Name</small>
-                                            Title
+                                            <small id="small-title">{{ $item->get_title() }}</small>
+                                            {{ $item->get_title() }}
                                           </div>
                                         </h5>
                                       </a>
                                   </div>
 
-                                  <div id="collapse" class="collapse" role="tabpanel" aria-labelledby="heading" data-parent="#accordion">
+                                  <div id="collapse-{{$i}}" class="collapse" role="tabpanel" aria-labelledby="heading-{{$i}}" data-parent="#accordion">
                                     <div class="card-body" style="background:white">
-                                      <p>Something like aloo</p>
-                                      <p><small>Posted on 12</small></p>
+                                      <p>{!! $item->get_content() !!}</p>
+                                      <p><small>Posted on {{ $item->get_date('j F Y | g:i a') }}</small></p>
                                     </div>
                                   </div>
                                 </div>
-                                
                             </div>
-
-                            <div class="item">
-                                <div class="cardclient-blocks dark-primary-border">
-                                  <div class="card-header" role="tab" id="heading1">
-                                      <a data-parent="#accordion" data-toggle="collapse" data-target="#collapse1" aria-expanded="false" aria-controls="collapse">
-                                        <h5 class="mb-0">
-                                          <div class="stars stars-example-fontawesome-o">
-                                            <select class="example-fontawesome-o rating 2" name="rating" data-current-rating="0" autocomplete="off">
-                                                <option value="" label="0"></option>
-                                                <option value="1">1</option>
-                                            </select>
-
-                                            <small id="small-title">Website Name</small>
-                                            Title
-                                          </div>
-                                        </h5>
-                                      </a>
-                                  </div>
-
-                                  <div id="collapse1" class="collapse" role="tabpanel" aria-labelledby="heading1" data-parent="#accordion">
-                                    <div class="card-body" style="background:white">
-                                      <p>Something like aloo</p>
-                                      <p><small>Posted on 12</small></p>
-                                    </div>
-                                  </div>
-                                </div>
-                                
-                            </div>
-
-
+                            @php 
+                                  $i++;
+                              @endphp
+                      @endforeach
                       </div>
+                      @endif
+                  @endif
             </div>
         </div>
     </div>
