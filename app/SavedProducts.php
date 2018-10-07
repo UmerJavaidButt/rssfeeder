@@ -9,7 +9,7 @@ class SavedProducts extends Model
     //
     protected $table = 'saved_products';
     protected $fillable = [
-        'id', 'favorite_bit', 'scrapped_id'
+        'id', 'favorit_bit', 'scrapped_id'
     ];
 
     public function scrappedData(){

@@ -26,3 +26,5 @@ Route::post('addmoney/stripe', array('as' => 'addmoney.stripe','uses' => 'AddMon
 
 Route::get('scrapper', 'ScrapController@rss_scrap')->name('scrapper');
 
+Route::get('rate_product/{id}/{val}', 'RssController@rate_product')->name('rate_product');
+
