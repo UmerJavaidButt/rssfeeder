@@ -39,15 +39,15 @@ body{
 }
 
 .btn-primary {
-    background-color: #1abc9c !important;
-    border-color: #1abc9c !important;
+    background-color: #212529 !important;
+    border-color: #212529 !important;
     color: #fff !important;
     cursor: pointer;
     transition: all ease-in 0.3s;
 }
 
 .btn-primary:hover{
-    color: #1abc9c;
+    color: #212529;
     background-color: #fff; 
 }
 
