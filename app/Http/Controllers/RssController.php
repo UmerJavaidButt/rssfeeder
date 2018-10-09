@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use FeedReader;
 use Feeds;
+use App\Subscription;
+use App\SavedProducts;
+use App\ScrappedData;
 class RssController extends Controller
 {
 
@@ -15,15 +18,9 @@ class RssController extends Controller
 
     //
     function index(){
-        //$subscriptions = \Auth::user()->subscription()->get();
-        $feed = Feeds::make("https://thehalloweenspirit.com/collections/all.atom");
-
-        $data = array(
-            'title'     => $feed->get_title(),
-            'permalink' => $feed->get_permalink(),
-            'items'     => $feed->get_items(),
-        );
-    	return view('home.feeds');
+        $subscriptions = \Auth::user()->subscription()->with('scrappedData')->get();
+        //return $subscriptions;
+    	return view('home.feeds', compact('subscriptions'));
     }
 
     function competitors(){
@@ -31,26 +28,22 @@ class RssController extends Controller
     }
 
     function savedProducts(){
-        return view('home.saved_products');
+        $subscriptions = \Auth::user()->subscription()->with('scrappedData')->get();
+        return view('home.saved_products', compact('subscriptions'));
     }
 
     function subscribe(){
         return view('home.subscribe');
     }
 
-    function feed(Request $request){
-        $subscriptions = \Auth::user()->subscription()->get();
-        $extention = '/collections/all.atom';
-    	$url = $request->get('url');
-    	$feed = Feeds::make($url.$extention);
-
-        $data = array(
-            'title'     => $feed->get_title(),
-            'permalink' => $feed->get_permalink(),
-            'items'     => $feed->get_items(),
-        );
-
-        return view('home.feeds', compact('data'));
+    function rate_product($id, $val){
         
+        $product = ScrappedData::where('id', $id)->first();
+        if(!empty($product)){
+            $product->favorite_bit = $val;
+            $product->save();
+            return json_encode(array('success'=>1, 'msgs'=>'changed status'));
+        }
+        return json_encode(array('success'=>0, 'msgs'=>'not changed status'));
     }
 }

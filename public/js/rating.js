@@ -25,7 +25,7 @@ $(document).ready(function() {
             allowEmpty: true,
             emptyValue: '-- no rating selected --',
             onSelect: function(value, text) {
-                alert('Selected rating: ' + value);
+                //alert('Selected rating: ' + value);
             }
         });
 
@@ -102,7 +102,7 @@ $(document).ready(function() {
             showSelectedRating: false,
             initialRating: currentRating,
             onSelect: function(value, text) {
-                alert(value);
+                //alert(text);
                 if (!value) {
                     $('.example-fontawesome-o')
                         .barrating('clear');

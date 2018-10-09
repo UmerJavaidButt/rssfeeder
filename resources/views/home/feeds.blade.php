@@ -42,7 +42,6 @@
 
     <!-- Style.css -->
     <link rel="stylesheet" type="text/css" href="{{asset('css/sidebar/style.css')}}">
-
 </head>
 <body>
     <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
@@ -201,37 +200,33 @@
                       @endphp
                 
                       <div class="accordion md-accordion" id="accordion" role="tablist" aria-multiselectable="false">
-                      @foreach ($data['items'] as $item)
+                            @foreach($subscriptions as $subscription)
+                                @foreach($subscription->scrappedData as $item)
                             <div class="item">
                                 <div class="cardclient-blocks dark-primary-border">
                                   <div class="card-header" role="tab" id="heading">
-                                      <a data-parent="#accordion" data-toggle="collapse" data-target="#collapse-{{$i}}" aria-expanded="false" aria-controls="collapse">
+                                      <a data-parent="#accordion{{$item->id}}" data-toggle="collapse" data-target="#collapse{{$item->id}}" aria-expanded="false" aria-controls="collapse">
                                         <h5 class="mb-0">
-                                          <div class="stars stars-example-fontawesome-o">
-                                            <select class="example-fontawesome-o rating1" name="rating" data-current-rating="0" autocomplete="off">
-                                                <option value="" label="0"></option>
-                                                <option value="1">1</option>
-                                            </select>
-
-                                            <small id="small-title">{{ $item->get_title() }}</small>
-                                            {{ $item->get_title() }}
-                                          </div>
+                                            <small class="f-right" id="small-title">{{$item->post_date}}</small>
+                                          
+                                          <span id="rating{{$item->id}}" onclick="rateProduct('{{$item->id}}')" data-value='{{$item->favorite_bit ? 1 : 0 }}'><i class="fa fa-star{{$item->favorite_bit ? '': '-o'}}"></i></span>
+                                          <small id="small-title">{{$subscription->url}}</small>
+                                            {{$item->post_title}}
                                         </h5>
                                       </a>
                                   </div>
 
-                                  <div id="collapse-{{$i}}" class="collapse" role="tabpanel" aria-labelledby="heading-{{$i}}" data-parent="#accordion">
+                                  <div id="collapse{{$item->id}}" class="collapse" role="tabpanel" aria-labelledby="heading" data-parent="#accordion{{$item->id}}">
                                     <div class="card-body" style="background:white">
-                                      <p>{!! $item->get_content() !!}</p>
-                                      <p><small>Posted on {{ $item->get_date('j F Y | g:i a') }}</small></p>
+                                    <p><a href="{{$item->post_url}}" >{{$item->post_url}}</a></p>
+                                      <p>{!!base64_decode($item->post_description)!!}</p>
                                     </div>
                                   </div>
                                 </div>
                             </div>
-                            @php 
-                                  $i++;
-                              @endphp
-                      @endforeach
+                            @endforeach
+                            @endforeach
+
                       </div>
                       @endif
                   @endif
@@ -253,8 +248,6 @@
 
     <!-- rating js -->
     <script type="text/javascript" src="{{ asset('jquery-bar-rating/jquery.barrating.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js//rating.js') }}"></script>
-    
     
     <script src="{{ asset('js/feed.js') }}"></script>
 
@@ -269,6 +262,27 @@
             }
         });
     });
+    </script>
+    <script>
+    function rateProduct(item_id){
+        var value =1 ;
+        var pre_value = $('#rating'+item_id).data('value');
+        if(pre_value == 1){
+            $('#rating'+item_id).html('<i class="fa fa-star-o"></i>')
+            value =0;
+        }
+        else{
+            $('#rating'+item_id).html('<i class="fa fa-star"></i>')
+        }
+        $('#rating'+item_id).data('value', value);
+        $.ajax({
+            type: "GET",
+            url: '/rate_product/'+item_id+'/'+value,
+            success: function( msg ) {
+                alert('Status Changed')
+            }
+        });
+    }
     </script>
 </body>
 </html>
