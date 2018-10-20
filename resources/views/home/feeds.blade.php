@@ -95,10 +95,10 @@
 
   <div class="main-menu">
     <div class="main-menu-header">
-        <img class="img-40" src="{{asset('images/user.png')}}" alt="User-Profile-Image">
+        <img class="img-40" src="{{asset('images/\Auth::user()->image')}}" alt="User-Profile-Image">
           <div class="user-details">
               <span>{{ Auth::user()->name }}</span>
-              <a id="more-details">Managae Account<i class="ti-angle-down"></i></a>
+              <a id="more-details" href="{{route('manage_account')}}">Managae Account<i class="ti-angle-down"></i></a>
           </div>
     </div>
     <div class="main-menu-content">
@@ -165,7 +165,7 @@
                       <div class="row">
                           <ul class="nav-left col-md-8 col-sm-12 col-xs-12">
                                <div class=" ">
-                                  <form action="/feed" method="post">
+                                  <form action="/subscribeURL" method="post">
                                       {{csrf_field()}}
                                     <div class="item-left-search">
                                         <input name="url" class="form-control search-bar-main" type="text" placeholder="https://example.com" aria-label="Search">
@@ -178,6 +178,11 @@
                           </ul>
                           <ul class="nav-right col-md-4 col-sm-12 col-xs-12">
                               <button class="btn btn-default btn-add btn-md date_filter" id="datefilter">Filter</button>
+                              <form id="filterForm" method = "post" action = "/filter">
+                                {{ csrf_field()}}
+                                <input type = "hidden" id = "from_date" name = "from_date">
+                                <input type = "hidden" id = "to_date" name = "to_date">
+                              </form>
                           </ul>
                       </div>
                   </div>
@@ -189,15 +194,7 @@
             <div class="row">
                 <!-- Documents card start -->
                 <div class="col-md-12 col-xl-12">
-                @if(!empty($data))
-                  @if (empty($data['items']))
-                      <div class="alert">
-                        {{('Please Enter a valid URL')}} 
-                      </div>
-                  @else
-                      @php
-                          $i = 0;
-                      @endphp
+                @if(!empty($subscriptions))
                 
                       <div class="accordion md-accordion" id="accordion" role="tablist" aria-multiselectable="false">
                             @foreach($subscriptions as $subscription)
@@ -229,7 +226,6 @@
 
                       </div>
                       @endif
-                  @endif
             </div>
         </div>
     </div>

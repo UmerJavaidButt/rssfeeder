@@ -8,6 +8,7 @@ use Feeds;
 use App\Subscription;
 use App\SavedProducts;
 use App\ScrappedData;
+use Validator;
 class RssController extends Controller
 {
 
@@ -23,8 +24,30 @@ class RssController extends Controller
     	return view('home.feeds', compact('subscriptions'));
     }
 
+    function filter(Request $request){
+        $category_validator = Validator::make($request->all(), [
+            'from_date' => 'required',
+            'to_date' => 'required',
+        ]);
+
+        if ($category_validator->fails()) {
+            return redirect('/');
+        }
+
+        $from_date = $request->from_date;
+        $to_date = $request->to_date;
+//return $from_date;
+
+        $subscriptions = \Auth::user()->subscription()->with(['scrappedData' => function ($query)use($from_date, $to_date) {
+            $query->whereBetween('post_date', [$from_date, $to_date]);
+        }])->get();
+        //return $subscriptions;
+    	return view('home.feeds', compact('subscriptions'));
+    }
+
     function competitors(){
-        return view('home.competitors');
+        $subscriptions = \Auth::user()->subscription()->get();
+        return view('home.competitors', compact('subscriptions'));
     }
 
     function savedProducts(){

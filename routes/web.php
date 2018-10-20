@@ -25,6 +25,11 @@ Route::get('addmoney/stripe/{amount}', array('as' => 'addmoney.paywithstripe','u
 Route::post('addmoney/stripe', array('as' => 'addmoney.stripe','uses' => 'AddMoneyController@postPaymentWithStripe'));
 
 Route::get('scrapper', 'ScrapController@rss_scrap')->name('scrapper');
+Route::post('filter', 'RssController@filter')->name('filter');
+Route::get('filter', 'RssController@index')->name('filter');
 
 Route::get('rate_product/{id}/{val}', 'RssController@rate_product')->name('rate_product');
+
+Route::get('manage_account', 'HomeController@upload_image')->name('manage_account');
+Route::post('account_settings', 'HomeController@user_settings')->name('account_settings');
 

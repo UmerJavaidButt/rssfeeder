@@ -167,7 +167,7 @@
                       <div class="row">
                           <ul class="nav-left col-md-8 col-sm-12 col-xs-12">
                                <div class=" ">
-                                  <form action="/feed" method="post">
+                                  <form action="/subscribeURL" method="post">
                                       {{csrf_field()}}
                                     <div class="item-left-search">
                                         <input class="form-control search-bar-main" type="text" placeholder="https://example.com" aria-label="Search">
@@ -180,7 +180,7 @@
                           </ul>
                           <ul class="nav-right col-md-4 col-sm-12 col-xs-12">
                               <div class=" ">
-                                  <form action="/feed" method="post">
+                                  <form action="/subscribeURL" method="post">
                                       {{csrf_field()}}
                                     <div class="item-left-search">
                                         <input class="form-control search-bar-main" type="text" placeholder="Input" aria-label="Search">
@@ -202,96 +202,11 @@
             <!-- Documents card start -->
             <div class="col-md-12 col-xl-12 col-sm-12 col-xs-12">
               <div class="masonry">
-               <div class="item">Lorem ipsum1</div>
-               <div class="item">Lorem ipsum2</div>
-               <div class="item">Lorem ipsum3</div>
-               <div class="item">Lorem ipsum4</div>
-               <div class="item">Lorem ipsum5</div>
-               <div class="item">Lorem ipsum6</div>
-               <div class="item">Lorem ipsum7</div>
-               <div class="item">Lorem ipsum8</div>
-               <div class="item">Lorem ipsum9</div>
-               <div class="item">Lorem ipsum0</div>
-               <div class="item">Lorem ipsum1</div>
-               <div class="item">Lorem ipsum2</div>
-               <div class="item">Lorem ipsum3</div>
-               <div class="item">Lorem ipsum4</div>
-               <div class="item">Lorem ipsum5</div>
-               <div class="item">Lorem ipsum6</div>
-               <div class="item">Lorem ipsum7</div>
-               <div class="item">Lorem ipsum8</div>
-               <div class="item">Lorem ipsum9</div>
-               <div class="item">Lorem ipsum0</div>
-               <div class="item">Lorem ipsum1</div>
-               <div class="item">Lorem ipsum2</div>
-               <div class="item">Lorem ipsum3</div>
-               <div class="item">Lorem ipsum4</div>
-               <div class="item">Lorem ipsum5</div>
-               <div class="item">Lorem ipsum6</div>
-               <div class="item">Lorem ipsum7</div>
-               <div class="item">Lorem ipsum8</div>
-               <div class="item">Lorem ipsum9</div>
-               <div class="item">Lorem ipsum0</div>
-               <div class="item">Lorem ipsum1</div>
-               <div class="item">Lorem ipsum2</div>
-               <div class="item">Lorem ipsum3</div>
-               <div class="item">Lorem ipsum4</div>
-               <div class="item">Lorem ipsum5</div>
-               <div class="item">Lorem ipsum6</div>
-               <div class="item">Lorem ipsum7</div>
-               <div class="item">Lorem ipsum8</div>
-               <div class="item">Lorem ipsum9</div>
-               <div class="item">Lorem ipsum0</div>
-               <div class="item">Lorem ipsum1</div>
-               <div class="item">Lorem ipsum2</div>
-               <div class="item">Lorem ipsum3</div>
-               <div class="item">Lorem ipsum4</div>
-               <div class="item">Lorem ipsum5</div>
-               <div class="item">Lorem ipsum6</div>
-               <div class="item">Lorem ipsum7</div>
-               <div class="item">Lorem ipsum8</div>
-               <div class="item">Lorem ipsum9</div>
-               <div class="item">Lorem ipsum0</div>
-               <div class="item">Lorem ipsum11</div>
-               <div class="item">Lorem ipsum22</div>
-               <div class="item">Lorem ipsum33</div>
-               <div class="item">Lorem ipsum44</div>
-               <div class="item">Lorem ipsum55</div>
-               <div class="item">Lorem ipsum66</div>
-               <div class="item">Lorem ipsum77</div>
-               <div class="item">Lorem ipsum88</div>
-               <div class="item">Lorem ipsum99</div>
-               <div class="item">Lorem ipsum00</div>
-               <div class="item">Lorem ipsum11</div>
-               <div class="item">Lorem ipsum22</div>
-               <div class="item">Lorem ipsum33</div>
-               <div class="item">Lorem ipsum44</div>
-               <div class="item">Lorem ipsum55</div>
-               <div class="item">Lorem ipsum66</div>
-               <div class="item">Lorem ipsum77</div>
-               <div class="item">Lorem ipsum88</div>
-               <div class="item">Lorem ipsum99</div>
-               <div class="item">Lorem ipsum00</div>
-               <div class="item">Lorem ipsum1</div>
-               <div class="item">Lorem ipsum2</div>
-               <div class="item">Lorem ipsum3</div>
-               <div class="item">Lorem ipsum4</div>
-               <div class="item">Lorem ipsum5</div>
-               <div class="item">Lorem ipsum6</div>
-               <div class="item">Lorem ipsum7</div>
-               <div class="item">Lorem ipsum8</div>
-               <div class="item">Lorem ipsum9</div>
-               <div class="item">Lorem ipsum0</div>
-               <div class="item">Lorem ipsum1</div>
-               <div class="item">Lorem ipsum2</div>
-               <div class="item">Lorem ipsum3</div>
-               <div class="item">Lorem ipsum4</div>
-               <div class="item">Lorem ipsum5</div>
-               <div class="item">Lorem ipsum6</div>
-               <div class="item">Lorem ipsum7</div>
-               <div class="item">Lorem ipsum8</div>
-               <div class="item">Lorem ipsum9</div>
-               <div class="item">Lorem ipsum0</div>
+               @if(!empty($subscriptions))
+                    @foreach($subscriptions as $subscription)
+                    <div class="item">{{$subscription->url}}</div>
+                    @endforeach
+               @endif
             </div>
             </div>
         </div>

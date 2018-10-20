@@ -166,7 +166,7 @@
                       <div class="row">
                           <ul class="nav-left col-md-8 col-sm-12 col-xs-12">
                                <div class=" ">
-                                  <form action="/feed" method="post">
+                                  <form action="/subscribeURL" method="post">
                                       {{csrf_field()}}
                                     <div class="item-left-search">
                                         <input class="form-control search-bar-main" type="text" placeholder="https://example.com" aria-label="Search">
@@ -179,6 +179,11 @@
                           </ul>
                           <ul class="nav-right col-md-4 col-sm-12 col-xs-12">
                               <button class="btn btn-default btn-add btn-md date_filter" id="datefilter">Filter</button>
+                              <form id="filterForm" method = "post" action = "/filter">
+                                {{ csrf_field()}}
+                                <input type = "hidden" id = "from_date" name = "from_date">
+                                <input type = "hidden" id = "to_date" name = "to_date">
+                              </form>
                           </ul>
                       </div>
                   </div>

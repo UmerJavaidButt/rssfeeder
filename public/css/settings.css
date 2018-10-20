@@ -1,0 +1,10 @@
+.page-body{
+    margin-top: 85px !important;
+}
+
+.card{
+    border-top: 1px solid rgb(7, 7, 7) !important;
+    border-bottom: 1px solid rgb(7, 7, 7) !important;
+    border-left: 1px solid rgb(7, 7, 7) !important;
+    border-right: 1px solid rgb(7, 7, 7) !important;
+}

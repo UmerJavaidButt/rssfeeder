@@ -31,7 +31,7 @@ class AddMoneyController extends Controller
         $input = $request->all();
         if ($validator->passes()) { 
             $input = array_except($input,array('_token'));
-            $stripe = Stripe::make('sk_test_PVXtzkhKGE6eV0iuxTqgh4iZ');
+            $stripe = Stripe::make('rk_live_kDi372S5HlJ7CW0oabEdGkUP');
             try {
                 $token = $stripe->tokens()->create([
                 'card' => [
@@ -49,8 +49,9 @@ class AddMoneyController extends Controller
             // 'exp_year' => 2020,
             // ],
              // ]);
+             $amount = $request->get('amount'); 
             if (!isset($token['id'])) {
-                return redirect()->route('addmoney.paywithstripe');
+                return redirect()->route('addmoney.paywithstripe', $amount);
         }
         $charge = $stripe->charges()->create([
             'card' => $token['id'],

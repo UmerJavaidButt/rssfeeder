@@ -57,7 +57,7 @@ return [
 
     'from' => [
         'address' => env('MAIL_FROM_ADDRESS', 'info@yuvix.co'),
-        'name' => env('MAIL_FROM_NAME', 'RSS FEEDER'),
+        'name' => env('MAIL_FROM_NAME', 'Application'),
     ],
 
     /*

@@ -58,6 +58,10 @@
 
  	}
 
+ 	.page_wrapper{
+ 		margin-left: 0px !important;
+ 	}
+
  	.navbar-nav .dropdown-menu {
  		
  	}
