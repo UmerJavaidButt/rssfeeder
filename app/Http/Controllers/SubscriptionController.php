@@ -21,7 +21,7 @@ class SubscriptionController extends Controller
         	if ($data) {
                 $subscription = \Auth::user()->subscription()->create($data);
                 //return $subscription->url;
-                return $this->rss_scrap($subscription);
+                 $this->rss_scrap($subscription);
         		return redirect()->back()->with('message', 'Successfully Subscribed!');
         	} else{
         		return redirect()->back()->withErrors(['message', 'Could not subscribe, Try Again!']);
